@@ -22,10 +22,18 @@ int main(int argc, char** argv) {
     
     // Lettura degli elementi dal file ed inserimento ordinato
     while(fread(&studenteDaAggiungere, sizeof(studente), 1, inputFile) == 1) {
-        // studenteDaAggiungere contiene i dati dello studente letto
-        
-        // TODO Implementare il codice per l'inserimento in ordine del nuovo elemento
-    
+        n = size(list);
+        for(i=0; i<n; i++) {
+            studenteInLista = getElementAtPosition(list, i);
+            if(strcmp(studenteInLista.cognome, studenteDaAggiungere.cognome) > 0) {
+                break;
+            }
+        }
+        list = insertElementAtPosition(list, i, studenteDaAggiungere);
+        if(list == NULL) {
+            fprintf(stderr, "Si e' verificato un errore nell'aggiunta di un nuovo elemento.\n");
+            exit(-1);
+        }
     }
     fclose(inputFile);
     

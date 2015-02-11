@@ -8,9 +8,10 @@
  */
 int size(studenteLinkedList list) {
     int r=0;
-    
-    // TODO Implementa il corpo della funzione
-    
+    while(list != NULL) {
+        r++;
+        list = list->next;
+    }
     return r;
 }
 
@@ -24,7 +25,19 @@ int size(studenteLinkedList list) {
 studente getElementAtPosition(studenteLinkedList list, int position) {
     studente r;
     
-    // TODO Implementa il corpo della funzione
+    int i;
+    r.cognome[0]=0; // Imposto cognome a stringa vuota
+    r.nome[0]=0;    // Imposto nome a stringa vuota
+    for(i=0; i<position && list != NULL; i++) {
+        list = list->next;
+    }
+    
+    if(list != NULL) {
+        r = list->s;
+        // Valido anche nella forma seguente, sebbene non necessaria.
+//        strcpy(r.cognome, list->s.cognome);
+//        strcpy(r.nome, list->s.nome);        
+    }
     
     return r;
 }
@@ -41,9 +54,25 @@ studente getElementAtPosition(studenteLinkedList list, int position) {
  */
 studenteLinkedList insertElementAtPosition(studenteLinkedList list, int position, studente e) {
     studenteLinkedList r=NULL;
-    
-    // TODO Implementa il corpo della funzione
-    
+    int i;
+    LLElement *newElement;
+    LLElement **scan;
+    scan = &list;
+    newElement = (LLElement *)malloc(sizeof(LLElement));
+    if(newElement != NULL) {
+        for(i=0; i<position && (*scan) != NULL; i++) {
+            scan = &((*scan)->next);
+        }
+        if(i == position) {
+            newElement->s = e;
+            // Valido anche nella forma seguente, sebbene non necessaria.
+//            strcpy(newElement->s.cognome, e.cognome);
+//            strcpy(newElement->s.nome, e.nome);
+            newElement->next = *scan;
+            *scan = newElement;
+            r = list;
+        }
+    }
     return r;
 }
 
@@ -53,8 +82,11 @@ studenteLinkedList insertElementAtPosition(studenteLinkedList list, int position
  * Restituisce sempre NULL.
  */
 studenteLinkedList empty(studenteLinkedList list) {
-    
-    // TODO Implementa il corpo della funzione
-    
+    LLElement * temp;
+    while(list != NULL) {
+        temp = list;
+        list = list->next;
+        free(temp);
+    }
     return NULL;
 }
