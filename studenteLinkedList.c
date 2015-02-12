@@ -9,10 +9,16 @@
 int size(studenteLinkedList list) {
     int r=0;
     
-    // TODO Implementa il corpo della funzione
+    int size = 0;
+       
+    while(list != NULL){
+        size++;
+        list = list->next;
+    }
     
-    return r;
-}
+    return size;
+
+} //-1
 
 
 /*
@@ -22,12 +28,20 @@ int size(studenteLinkedList list) {
  * dell'elemento restituito hanno lunghezza zero.
  */
 studente getElementAtPosition(studenteLinkedList list, int position) {
-    studente r;
+    studente r = {0};
     
-    // TODO Implementa il corpo della funzione
+    int i;
+
+    for(i=0; i<position ; i++){
+        list = list->next;
+    }
+    
+    if(list != NULL){
+        r = list->s; 
+    }
     
     return r;
-}
+}  //0
 
 
 /*
@@ -54,7 +68,12 @@ studenteLinkedList insertElementAtPosition(studenteLinkedList list, int position
  */
 studenteLinkedList empty(studenteLinkedList list) {
     
-    // TODO Implementa il corpo della funzione
+    LLElement *elimina;
+    while(list != NULL) {
+        elimina = list;
+        list = list->next;
+        free(elimina);
+    }
     
     return NULL;
 }
