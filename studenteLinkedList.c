@@ -56,7 +56,28 @@ studente getElementAtPosition(studenteLinkedList list, int position) {
 studenteLinkedList insertElementAtPosition(studenteLinkedList list, int position, studente e) {
     studenteLinkedList r=NULL;
     
-    // TODO Implementa il corpo della funzione
+    LLElement * nuovo;
+    nuovo = (LLElement *)malloc(sizeof(LLElement));
+    
+    LLElement ** scorri;
+    scorri = &list;
+    int i;
+    
+    if(nuovo != NULL){
+        for(i=0; i<position ; i++){
+            scorri = &((*scorri)->next);
+        }
+        if(scorri != NULL){
+            nuovo->next = *scorri;
+            nuovo->s = e;
+            *scorri = nuovo;
+        }else{
+            nuovo->next = NULL;
+            nuovo->s = e;
+            *scorri = nuovo;
+        }
+        r = *scorri;
+    }
     
     return r;
 }
@@ -76,4 +97,4 @@ studenteLinkedList empty(studenteLinkedList list) {
     }
     
     return NULL;
-}
+}  //-1
