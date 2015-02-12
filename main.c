@@ -23,9 +23,37 @@ int main(int argc, char** argv) {
     // Lettura degli elementi dal file ed inserimento ordinato
     while(fread(&studenteDaAggiungere, sizeof(studente), 1, inputFile) == 1) {
         // studenteDaAggiungere contiene i dati dello studente letto
+        n = size(list);
+        int max;
         
-        // TODO Implementare il codice per l'inserimento in ordine del nuovo elemento
-    
+        
+        
+        if(list != NULL){
+            for(i=0 ; i<n ; i++){
+                studenteInLista = getElementAtPosition(list, i);
+                max = strcmp( (studenteDaAggiungere.cognome), (studenteInLista.cognome));
+                
+                switch(max){
+                    case(1):
+                        list = insertElementAtPosition(list, i-1, studenteDaAggiungere);
+                        break;
+                    case(0):
+                        list = insertElementAtPosition(list, i, studenteDaAggiungere);
+                        break;
+                    default:
+                        list = insertElementAtPosition(list, n, studenteDaAggiungere);
+                }
+                
+                
+                
+            }
+        }else{
+            list = insertElementAtPosition(list, 0, studenteDaAggiungere);
+        }
+        
+        
+        
+          
     }
     fclose(inputFile);
     
