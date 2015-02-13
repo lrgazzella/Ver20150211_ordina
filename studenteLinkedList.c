@@ -41,7 +41,7 @@ studente getElementAtPosition(studenteLinkedList list, int position) {
     }
     
     return r;
-}  //0
+}  //-1
 
 
 /*
@@ -80,7 +80,7 @@ studenteLinkedList insertElementAtPosition(studenteLinkedList list, int position
     }
     
     return r;
-}
+} //0
 
 
 /*
